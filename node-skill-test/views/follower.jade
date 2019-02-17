@@ -1,0 +1,22 @@
+extends layout
+
+block content
+    p Followers 
+    //- console.log(followers)
+    - var followerList = followers
+    div
+    table(style="width:100%" align="center" border="1")
+        thead
+            tr 
+                th avatar
+                th login
+                th url
+        tbody(text-align: center)
+        each user in followerList
+            tr
+                td(style="text-align: center")
+                    img(src=user.avatar width ="50" height ="50") 
+                td(style="text-align: center") #{user.login}
+                td(style="text-align: center") #{user.url}
+        //- else
+        //- li There are no followers.

@@ -1,0 +1,21 @@
+//- <h1> Github Follower </h1>
+//- <form action="/team_name_url/" method="post">
+//-     <label for="team_name">Enter name: </label>
+//-     <input id="team_name" type="text" name="name_field" value="Default name for team.">
+//-     <input type="submit" value="OK">
+//- </form>
+
+extends layout
+block content
+    h1 Github Follower
+    div
+    form(id = 'follower-form')
+        label(for="account") Enter Github account :
+        br 
+        input(id="account",type="text",name="account",value="")
+        input(type="submit",value="Submit")
+
+    h2#results    
+
+    script(src="//cdnjs.cloudflare.com/ajax/libs/jquery/2.0.3/jquery.min.js")
+    script(src="/javascripts/main.js")
