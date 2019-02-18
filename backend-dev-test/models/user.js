@@ -37,12 +37,6 @@ UserSchema.pre('save', function(next) {
     next();
   });
 
-function verifyPassword(myPlaintextPassword){
-    bcrypt.compare(myPlaintextPassword, hash, function(err, res) {
-        return res;
-    });
-}
-
 UserSchema.plugin(timestamps);
 UserSchema.plugin(mongooseStringQuery);
 const User = mongoose.model('User', UserSchema);

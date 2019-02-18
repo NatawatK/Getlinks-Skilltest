@@ -2,6 +2,7 @@
  * Module Dependencies
  */
 const errors = require('restify-errors');
+const bcrypt = require('bcrypt');
 /**
  * Model Schema
  */
@@ -19,7 +20,7 @@ module.exports = function(server) {
         console.log(req.body)
 		let data = req.body || {};
         let user = new User(data);
-        console.log(data)
+        // console.log(data)
 		user.save(function(err) {
 			if (err) {
 				console.error(err);
@@ -36,13 +37,18 @@ module.exports = function(server) {
 				new errors.InvalidContentError("Expects 'application/json'"),
 			);
         }
-        console.log(req.body)
+        // console.log(req.body)
         let data = req.body || {};
         User.findOne({ username: req.body.username }, function (err, user) {
 			if (err) { return done(err); }
 			if (!user) { return res.status(400).json({message: 'user not founded!'}); }
-			if (!user.verifyPassword(req.body.password)) { return res.status(400).json({message: 'password is incorrect!'});  }
-			return jres.status(200);
+			bcrypt.compare(req.body.password, user.password, function (err, result) {
+                if (result === true) {
+                  return res.json({message: "login success"});
+                } else {
+                  return res.json(401);
+                }
+              })
 		});
     });
 	/**
