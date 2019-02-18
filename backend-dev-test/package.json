@@ -1,0 +1,21 @@
+{
+  "name": "backend-dev-test",
+  "version": "1.0.0",
+  "description": "for Getlinks backend developer testing ",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "nodemon index"
+  },
+  "author": "Natawat Kwanpoom",
+  "license": "ISC",
+  "dependencies": {
+    "mongoose": "^5.4.13",
+    "mongoose-string-query": "^0.2.7",
+    "mongoose-timestamp": "^0.6.0",
+    "nodemon": "^1.18.10",
+    "restify": "^7.7.0",
+    "restify-errors": "^6.1.1",
+    "restify-plugins": "^1.6.0"
+  }
+}
