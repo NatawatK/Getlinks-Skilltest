@@ -5,6 +5,8 @@ const config = require('./config');
 const restify = require('restify');
 const mongoose = require('mongoose');
 const restifyPlugins = require('restify-plugins');
+const passport = require('passport-restify');
+const LocalStrategy = require('passport-local');
 /**
   * Initialize Server
   */
@@ -21,20 +23,23 @@ server.use(restifyPlugins.queryParser({ mapParams: true }));
 server.use(restifyPlugins.fullResponse());
 
 require('./routes/index.js')(server);
+require('./routes/user')(server);
+
+// server.use(passport.session);
 /**
   * Start Server, Connect to DB & Require Routes
   */
 server.listen(config.port, () => {
 	// establish connection to mongodb
 	mongoose.Promise = global.Promise;
-	mongoose.connect(config.db.uri, { useNewUrlParser: true} );
+	mongoose.connect(config.db.uri, { useNewUrlParser: true });
 	const db = mongoose.connection;
 	db.on('error', (err) => {
-	    console.error(err);
-	    process.exit(1);
+		console.error(err);
+		process.exit(1);
 	});
 	db.once('open', () => {
-	    // require('./routes')(server);
-	    console.log(`Server is listening on port ${config.port}`);
+		// require('./routes')(server);
+		console.log(`Server is listening on port ${config.port}`);
 	});
 });
