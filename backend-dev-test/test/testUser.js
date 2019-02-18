@@ -58,24 +58,23 @@ describe('Users', () => {
   /*
   Test Login 
   */
-  describe('/POST login', () => {
-    it('it should login success', (done) => {
-      let user = {
-        username: "testuser01",
-        password: "123456",
-      }
-      chai.request(server)
-        .post('/user/login')
-        .send(user)
-        .end((err, res) => {
-          // console.log('chai', res)
-          // res.should.have.status(200);
-          // res.body.should.have.json({ message: "login success" })
-          done();
-        });
-    });
-
-  });
-
+  // describe('/POST login', () => {
+  //   it('it should login success', (done) => {
+ 
+  //    let user = {
+  //       username: "testuser01",
+  //       password: "123456",
+  //     }
+  //     chai.request(server)
+  //       .post('/user/login')
+  //       .send(user)
+  //       .end((err, res) => {
+  //         // console.log('chai', res)
+  //         // res.should.have.status(200);
+  //         // res.body.should.have.json({ message: "login success" })
+  //         done();
+  //       });
+  //   });
+  // });
 });
 
